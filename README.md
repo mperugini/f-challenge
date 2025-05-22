@@ -27,9 +27,42 @@ La aplicación permite:
 
 ---
 
+## 📦 Estructura del proyecto
+
+  src/
+  api/               # llamadas a la API de GitHub
+  components/        # componentes reutilizables como UserCard
+  context/           # manejo de favoritos
+  screens/           # Home, Detail, Favorites
+  navigation/        # configuración de navegación
+
+
+
 ## 🚀 Instalación
 
 1. Cloná este repositorio:
+....
+2. Instalá las dependencias:
+    npm install
+
+3. Iniciá el proyecto con Expo:
+    npx expo start
+
+
+## 🧪 Testing 
+
+npm run test         # corre los tests
+npm run test:coverage  # corre tests y muestra cobertura
+
+
+
+
+
+
+
+
+
+
 
 ```bash
 
