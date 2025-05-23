@@ -6,10 +6,15 @@ export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState({});
 
   const toggleFavorite = (user) => {
-    setFavorites((prev) => ({
-      ...prev,
-      [user.login]: prev[user.login] ? undefined : user,
-    }));
+    setFavorites((prev) => {
+      const newFavorites = { ...prev };
+      if (newFavorites[user.login]) {
+        delete newFavorites[user.login];
+      } else {
+        newFavorites[user.login] = user;
+      }
+      return newFavorites;
+    });
   };
 
   return (
