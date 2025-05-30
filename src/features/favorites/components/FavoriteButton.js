@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFavorite, removeFavorite } from '../favoritesSlice';
@@ -22,3 +23,5 @@ export default function FavoriteButton({ productId }) {
     </TouchableOpacity>
   );
 }
+
+*/

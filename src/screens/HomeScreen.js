@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { View, FlatList, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, FlatList, TextInput, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { fetchUsers, searchUsers } from '../api/github';
 import UserCard from '../components/UserCard';
@@ -43,10 +43,10 @@ export default function HomeScreen({ navigation }) {
   }, [search]);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.searchRow}>
+    <View className="flex-1 p-2.5">
+      <View className="flex-row items-center border border-gray-300 rounded-md mb-2.5 px-2">
         <TextInput
-          style={styles.input}
+          className="flex-1 py-2 px-1"
           value={search}
           onChangeText={setSearch}
           placeholder="Buscar usuario"
@@ -54,7 +54,7 @@ export default function HomeScreen({ navigation }) {
         />
         {search.length > 0 && (
           <TouchableOpacity onPress={() => setSearch('')}>
-            <Ionicons name="close-circle" size={22} color="#aaa" style={styles.clearIcon} />
+            <Ionicons name="close-circle" size={22} color="#aaa" className="ml-1.5" />
           </TouchableOpacity>
         )}
       </View>
@@ -72,24 +72,3 @@ export default function HomeScreen({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 10 },
-  searchRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    marginBottom: 10,
-    paddingHorizontal: 8,
-  },
-  input: {
-    flex: 1,
-    paddingVertical: 8,
-    paddingHorizontal: 4,
-  },
-  clearIcon: {
-    marginLeft: 6,
-  }
-});

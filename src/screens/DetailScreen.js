@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { fetchUserDetails } from '../api/github';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../features/favorites/store/favoritesSlice';
@@ -26,14 +26,19 @@ export default function DetailScreen({ route }) {
   const isFav = favorites[username];
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: user.avatar_url }} style={styles.avatar} />
-      <Text style={styles.name}>{user.name || user.login}</Text>
-      <Text>{user.bio}</Text>
-      <Text>Login: {user.login}</Text>
-      <Text>Repos: {user.public_repos}</Text>
+    <View className="flex-1 items-center p-5">
+      <Image 
+        source={{ uri: user.avatar_url }} 
+        className="w-[100px] h-[100px] rounded-full mb-2.5"
+      />
+      <Text className="text-[18px] font-bold mb-2.5">
+        {user.name || user.login}
+      </Text>
+      <Text className="mb-2">{user.bio}</Text>
+      <Text className="mb-1">Login: {user.login}</Text>
+      <Text className="mb-5">Repos: {user.public_repos}</Text>
       <TouchableOpacity 
-        style={styles.favoriteButton} 
+        className="flex-row items-center bg-[#f0f0f0] p-2.5 rounded-lg mt-5"
         onPress={handleToggleFavorite}
       >
         <Ionicons 
@@ -41,44 +46,10 @@ export default function DetailScreen({ route }) {
           size={24} 
           color={isFav ? "#FF3B30" : "#666"} 
         />
-        <Text style={[styles.favoriteText, isFav && styles.favoriteTextActive]}>
+        <Text className={`ml-2 ${isFav ? 'text-[#FF3B30]' : 'text-[#666]'}`}>
           {isFav ? "Quitar de Favoritos" : "Agregar a Favoritos"}
         </Text>
       </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { 
-    flex: 1, 
-    alignItems: 'center', 
-    padding: 20 
-  },
-  avatar: { 
-    width: 100, 
-    height: 100, 
-    borderRadius: 50, 
-    marginBottom: 10 
-  },
-  name: { 
-    fontSize: 18, 
-    fontWeight: 'bold',
-    marginBottom: 10
-  },
-  favoriteButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    borderRadius: 8,
-    marginTop: 20,
-  },
-  favoriteText: {
-    marginLeft: 8,
-    color: '#666',
-  },
-  favoriteTextActive: {
-    color: '#FF3B30',
-  }
-});

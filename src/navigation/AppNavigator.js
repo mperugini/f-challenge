@@ -35,6 +35,7 @@ export default function AppNavigator() {
                   iconName="heart"
                   onPress={() => navigation.navigate('Favorites')}
                   color="#FF3B30"
+                  buttonStyle={{ padding: 8 }}
                 />
               </HeaderButtons>
             ),
