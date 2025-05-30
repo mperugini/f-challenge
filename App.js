@@ -1,11 +1,12 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import AppNavigator from './src/navigation/AppNavigator';
-import { FavoritesProvider } from './src/context/FavoritesContext';
+import { store } from './src/features/favorites/store/favoritesSlice';
 
 export default function App() {
   return (
-    <FavoritesProvider>
+    <Provider store={store}>
       <AppNavigator />
-    </FavoritesProvider>
+    </Provider>
   );
 }

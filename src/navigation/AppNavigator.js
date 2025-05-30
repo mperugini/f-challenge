@@ -1,20 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { TouchableOpacity, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import FavoritesHeaderButton from '../components/FavoritesHeaderButton';
-import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from '../screens/HomeScreen';
 import DetailScreen from '../screens/DetailScreen';
-import FavoritesScreen from '../screens/FavoritesScreen';
-import { FavoritesContext } from '../context/FavoritesContext';
+import FavoritesScreen from '../features/favorites/screens/FavoritesScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function AppNavigator() {
-  const { favorites } = useContext(FavoritesContext);
-
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -34,18 +29,14 @@ export default function AppNavigator() {
           options={({ navigation }) => ({
             title: 'Github',
             headerRight: () => (
-              <TouchableOpacity 
-                onPress={() => navigation.navigate('Favorites')}
-                style={styles.favoriteButton}
-              >
-                <Ionicons
-                              name={'heart-sharp'}
-                              size={24}
-                              color="#FF3B30"
-                              style={styles.icon}
-                            />
-
-              </TouchableOpacity>
+              <HeaderButtons HeaderButtonComponent={FavoritesHeaderButton}>
+                <Item
+                  title="Favoritos"
+                  iconName="heart"
+                  onPress={() => navigation.navigate('Favorites')}
+                  color="#FF3B30"
+                />
+              </HeaderButtons>
             ),
           })}
         />
@@ -61,20 +52,3 @@ export default function AppNavigator() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  favoriteButton: {
-    marginRight: 12,
-    padding: 4,
-    borderRadius: 20,
-    width: 40,
-    height:30
-  },
-  icon: {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  }
-});

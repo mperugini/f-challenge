@@ -1,13 +1,15 @@
-import React, { useEffect, useState, useContext, useCallback } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { fetchUserDetails } from '../api/github';
-import { FavoritesContext } from '../context/FavoritesContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorite } from '../features/favorites/store/favoritesSlice';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function DetailScreen({ route }) {
   const { username } = route.params;
   const [user, setUser] = useState(null);
-  const { favorites, toggleFavorite } = useContext(FavoritesContext);
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.favorites);
 
   useEffect(() => {
     fetchUserDetails(username).then(response => setUser(response.data));
@@ -15,9 +17,9 @@ export default function DetailScreen({ route }) {
 
   const handleToggleFavorite = useCallback(() => {
     if (user) {
-      toggleFavorite(user);
+      dispatch(toggleFavorite(user));
     }
-  }, [user, toggleFavorite]);
+  }, [user, dispatch]);
 
   if (!user) return null;
 
