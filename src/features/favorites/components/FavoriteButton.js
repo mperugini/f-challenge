@@ -1,27 +1,24 @@
-/*
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { addFavorite, removeFavorite } from '../favoritesSlice';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { toggleFavorite } from '../store/favoritesSlice';
 
-export default function FavoriteButton({ productId }) {
+export default function FavoriteButton({ user }) {
   const dispatch = useDispatch();
-  const favorites = useSelector(state => state.favorites.items);
-  const isFavorite = favorites.includes(productId);
-
-  const toggle = () => {
-    if (isFavorite) {
-      dispatch(removeFavorite(productId));
-    } else {
-      dispatch(addFavorite(productId));
-    }
-  };
+  const favorites = useSelector((state) => state.favorites);
+  const isFav = favorites[user.login];
 
   return (
-    <TouchableOpacity onPress={toggle} style={{ padding: 4 }}>
-      <Text style={{ fontSize: 20 }}>{isFavorite ? '❤️' : '🤍'}</Text>
+    <TouchableOpacity 
+      onPress={() => dispatch(toggleFavorite(user))}
+      className="p-2"
+    >
+      <Ionicons 
+        name={isFav ? "heart" : "heart-outline"} 
+        size={24} 
+        color={isFav ? "#FF3B30" : "#666"} 
+      />
     </TouchableOpacity>
   );
-}
-
-*/
+} 
