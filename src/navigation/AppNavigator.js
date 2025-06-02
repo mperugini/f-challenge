@@ -2,9 +2,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import FavoritesHeaderButton from '../components/FavoritesHeaderButton';
-import HomeScreen from '../screens/HomeScreen';
-import DetailScreen from '../screens/DetailScreen';
+import FavoritesHeaderButton from '../features/favorites/components/FavoritesHeaderButton'
+
+import HomeScreen from '../shared/screens/HomeScreen';
+import DetailScreen from '../shared/screens/DetailScreen';
 import FavoritesScreen from '../features/favorites/screens/FavoritesScreen';
 
 const Stack = createNativeStackNavigator();

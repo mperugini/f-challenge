@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
-import UserCard from '../../../components/UserCard';
+import UserCard from '../../../shared/components/UserCard';
 
 export default function FavoritesScreen({ navigation }) {
   const favorites = useSelector((state) => state.favorites);

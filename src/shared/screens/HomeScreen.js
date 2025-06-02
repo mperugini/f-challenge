@@ -44,7 +44,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View className="flex-1 p-2.5">
-      <View className="flex-row items-center border border-gray-300 rounded-md mb-2.5 px-2">
+      <View className="flex-row items-center border border-gray-300 bg-white rounded-md mb-2.5 px-2">
         <TextInput
           className="flex-1 py-2 px-1"
           value={search}
